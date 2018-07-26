@@ -177,7 +177,7 @@ class InitMain(QtWidgets.QMainWindow, Ui_MainWindow):
         #Base.metadata.bind = engine
         dbSession = sessionmaker(bind=engine)
         self.session = dbSession()
-        self.tableWidget_Stock_report.horizontalHeader().count()
+
 
     def initSessionStopNet(self):
 

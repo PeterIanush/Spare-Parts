@@ -1,10 +1,7 @@
-import xlwt
-import xlsxwriter
-from os import PathLike
-from numpy import unicode
+from fileWriter import savefile
 
 from models import DB_Sp_Incoming
-from PyQt5.QtWidgets import QTableWidgetItem, QFileDialog
+from PyQt5.QtWidgets import QTableWidgetItem
 
 class StockRepotHandlers:
 
@@ -37,18 +34,18 @@ class StockRepotHandlers:
                    'date_order', 'date_incoming', 'type_sp']
 
         self.main.tableWidget_Stock_report.clear()
-        self.main.tableWidget_Stock_report.setHorizontalHeaderLabels(headers)
+        self.main.tableWidget_Stock_report.setHorizontalHeaderLabels(self.headers)
         records = self.main.session.query(DB_Sp_Incoming).all()
         numrows = len(records)
         if numrows > 0:
-            numcolums = len(headers)
+            numcolums = len(self.headers)
             tabwidget = self.main.tableWidget_Stock_report
 
             tabwidget.setRowCount(numrows)
             tabwidget.setColumnCount(numcolums)
-            tabwidget.setHorizontalHeaderLabels(headers)
+            tabwidget.setHorizontalHeaderLabels(self.headers)
             for row, record in enumerate(records):
-                for col, column_name in enumerate(headers):
+                for col, column_name in enumerate(self.headers):
                     value = vars(record)[column_name]
                     fieldValue = QTableWidgetItem(str(value))
                     tabwidget.setItem(row, col, fieldValue)
@@ -56,29 +53,6 @@ class StockRepotHandlers:
             print('Empty data')
 
     def savefile(self):
-            filename = QFileDialog.getSaveFileName(self.main, 'Save File', '', '.xls(*.xls)')
-            self.wbk = xlwt.Workbook(encoding="utf-8")
-            self.sheet = self.wbk.add_sheet('sheet1', cell_overwrite_ok=True)
-            self.writeTosheet(self.sheet)
 
-            self.wbk.save(filename[0])
+       savefile(tableWidget=(self.main.tableWidget_Stock_report), headers=self.headers)
 
-
-    def writeTosheet(self, sheet):
-
-        print(self.main.tableWidget_Stock_report.horizontalHeader())
-        for currentColumn in range(0, self.main.tableWidget_Stock_report.columnCount()):
-            for h in self.headers:
-                try:
-                    teext = h
-                    sheet.write(0, currentColumn, teext)
-                except AttributeError:
-                    pass
-        for currentColumn in range(0, self.main.tableWidget_Stock_report.columnCount()):
-            for currentRow in range(1, self.main.tableWidget_Stock_report.rowCount()+1):
-                try:
-                    teext = self.main.tableWidget_Stock_report.item(currentRow-1, currentColumn).text()
-                    sheet.write(currentRow, currentColumn, teext)
-
-                except AttributeError:
-                    pass
