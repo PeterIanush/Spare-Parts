@@ -12,7 +12,7 @@ class MaintenanceHandlers:
     def accept_reject(self):
 
         self.main.ButtomBox_maintenance.accepted.connect(self.accept)
-        self.main.ButtomBox_maintenance.rejected.connect(self.clearUIdata)
+        self.main.ButtomBox_maintenance.rejected.connect(self.reject)
 
     def accept(self):
 
@@ -25,6 +25,11 @@ class MaintenanceHandlers:
 
             self.writeToDB()
             self.clearUIdata()
+
+    def reject(self):
+
+        self.clearUIdata()
+        self.main.close()
 
     def clearUIdata(self):
 

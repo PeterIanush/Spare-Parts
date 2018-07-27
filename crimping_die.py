@@ -16,7 +16,7 @@ class CrimpingDieHandlers:
     def accept_reject(self):
 
         self.main.buttonBox_Crimping_Die.accepted.connect(self.accept)
-        self.main.buttonBox_Crimping_Die.rejected.connect(self.clearUIdata)
+        self.main.buttonBox_Crimping_Die.rejected.connect(self.reject)
 
     def accept(self):
 
@@ -31,6 +31,12 @@ class CrimpingDieHandlers:
             else:
                 self.writeHistoryToDB()
             self.clearUIdata()
+
+    def reject(self):
+
+        self.clearUIdata()
+        self.main.close()
+
 
     def clearUIdata(self):
 

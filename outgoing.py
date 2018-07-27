@@ -20,12 +20,17 @@ class OutgoingHandlers:
     def accept_reject(self):
 
         self.main.buttonBox_Outgoing.accepted.connect(self.accept)
-        self.main.buttonBox_Outgoing.rejected.connect(self.clearUIdata)
+        self.main.buttonBox_Outgoing.rejected.connect(self.reject)
 
     def accept(self):
 
         self.bindAllHandlers()
         self.validateQty()
+
+    def reject(self):
+
+        self.clearUIdata()
+        self.main.close()
 
 
     def clearUIdata(self):

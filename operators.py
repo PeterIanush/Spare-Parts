@@ -14,7 +14,7 @@ class OperatorsHandlers:
     def accept_reject(self):
 
         self.main.buttonBox_Operators.accepted.connect(self.accept)
-        self.main.buttonBox_Operators.rejected.connect(self.clearUIdata)
+        self.main.buttonBox_Operators.rejected.connect(self.reject)
 
     def accept(self):
 
@@ -27,6 +27,11 @@ class OperatorsHandlers:
 
             self.writeToDB()
             self.clearUIdata()
+
+    def reject(self):
+
+        self.clearUIdata()
+        self.main.close()
 
 
     def clearUIdata(self):

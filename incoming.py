@@ -23,8 +23,6 @@ class IncomingHandlers:
         self.bindAllHandlers()
         self.writeDataToDB()
 
-
-
     def reject(self):
         print('reject')
         self.main.lineEdit_Incoming_SPN.clear()

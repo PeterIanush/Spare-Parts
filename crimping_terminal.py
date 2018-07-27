@@ -16,7 +16,7 @@ class CrimpingTerminalHandlers:
     def accept_reject(self):
 
         self.main.buttonBox_Crimping_Terminal.accepted.connect(self.accept)
-        self.main.buttonBox_Crimping_Terminal.rejected.connect(self.clearUIdata)
+        self.main.buttonBox_Crimping_Terminal.rejected.connect(self.reject)
 
     def accept(self):
 
@@ -31,6 +31,11 @@ class CrimpingTerminalHandlers:
             else:
                 self.writeHistoryToDB()
             self.clearUIdata()
+
+    def reject(self):
+
+        self.clearUIdata()
+        self.main.close()
 
     def clearUIdata(self):
 

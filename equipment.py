@@ -14,12 +14,17 @@ class EquipmentHandlers:
     def accept_reject(self):
 
         self.main.buttonBox_EQIUPMENT.accepted.connect(self.accept)
-        self.main.buttonBox_EQIUPMENT.rejected.connect(self.clearUIdata)
+        self.main.buttonBox_EQIUPMENT.rejected.connect(self.reject)
 
     def accept(self):
 
         self.bindAllHandlers()
         self.writeToDB()
+
+    def reject(self):
+
+        self.clearUIdata()
+        self.main.close()
 
     def clearUIdata(self):
 

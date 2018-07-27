@@ -13,7 +13,7 @@ class PartsHandlers:
     def accept_reject(self):
 
         self.main.buttonBox_Parts.accepted.connect(self.accept)
-        self.main.buttonBox_Parts.rejected.connect(self.clearUIdata)
+        self.main.buttonBox_Parts.rejected.connect(self.reject)
 
     def accept(self):
 
@@ -21,6 +21,11 @@ class PartsHandlers:
         self.writeToDB()
         self.clearUIdata()
         self.comboBoxProject()
+
+    def reject(self):
+
+        self.clearUIdata()
+        self.main.close()
 
     def clearUIdata(self):
 
