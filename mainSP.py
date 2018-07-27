@@ -17,6 +17,8 @@ from crimping_die import CrimpingDieHandlers
 from crimping_maintenance import CrimpingMaintenanceHandlers
 from crimping_terminal import  CrimpingTerminalHandlers
 from reportStock import  StockRepotHandlers
+from reportHistoryIncoming import HistoryIncomingRepotHandlers
+from reportOutgoing import MovementRepotHandlers
 
 """for creating .exe"""
 import  pyodbc
@@ -76,8 +78,9 @@ class InitMain(QtWidgets.QMainWindow, Ui_MainWindow):
         self.pushButton_Crimping_Select_Tool.clicked.connect(self.move_to_crimping_terminal)
         self.pushButton_Crimping_Maintenance.clicked.connect(self.move_to_crimping_maintenace)
         self.pushButton_Reports_Back.clicked.connect(self.move_to_page_main)
-        self.pushButtonStockReport.clicked.connect(self.move_to_report_Stock)
-
+        self.pushButton_Stock_Report.clicked.connect(self.move_to_report_Stock)
+        self.pushButton_History_Incoming_Report.clicked.connect(self.move_to_report_History_Incoming)
+        self.pushButton_History_Movement_Report.clicked.connect(self.move_to_report_Outgoing)
 
     def click_OK_logining(self):
         '''check login in DB'''
@@ -164,6 +167,14 @@ class InitMain(QtWidgets.QMainWindow, Ui_MainWindow):
     def move_to_report_Stock(self):
 
         self.report_Stock = StockRepotHandlers(self)
+
+    def move_to_report_History_Incoming(self):
+
+        self.report_History = HistoryIncomingRepotHandlers(self)
+
+    def move_to_report_Outgoing(self):
+
+        self.report_History = MovementRepotHandlers(self)
 
 
 

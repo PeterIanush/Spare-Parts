@@ -23,7 +23,8 @@ class StockRepotHandlers:
         self.main.buttonBox_Stock_report_.rejected.connect(self.reject)
 
     def accept(self):
-        print('accept')
+        self.main.tableWidget_Stock_report.clear()
+        self.backButton()
 
     def reject(self):
         self.main.close()
