@@ -205,7 +205,7 @@ if __name__ == '__main__':
     import sys
     app = QtWidgets.QApplication(sys.argv)
 
-    engine = create_engine("mssql+pyodbc://sa:Prettl!@#4@kanban")
+    engine = create_engine("mssql+pyodbc://@kanban")
     Base.metadata.bind = engine
     DbSession = sessionmaker(bind=engine)
     session = DbSession()
