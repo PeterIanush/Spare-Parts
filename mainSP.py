@@ -184,7 +184,7 @@ class InitMain(QtWidgets.QMainWindow, Ui_MainWindow):
 
     def initSessionKanban(self):
 
-        engine = create_engine("mssql+pyodbc://sa:Prettl!@#4@kanban")
+        engine = create_engine("mssql+pyodbc://@kanban")
         #Base.metadata.bind = engine
         dbSession = sessionmaker(bind=engine)
         self.session = dbSession()
@@ -192,7 +192,7 @@ class InitMain(QtWidgets.QMainWindow, Ui_MainWindow):
 
     def initSessionStopNet(self):
 
-        engine = create_engine("mssql+pyodbc://sa:Prettl!@#4@stopnet")
+        engine = create_engine("mssql+pyodbc://@stopnet")
         #BaseStN.metadata.bind = engine
         dbSession = sessionmaker(bind=engine)
         self.sessionStN = dbSession()
